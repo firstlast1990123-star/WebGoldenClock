@@ -1,0 +1,80 @@
+# Obsidian local workspace configuration
+/.obsidian/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Private keys
+*.pem
+*.key
+
+# Local databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Node.js
+node_modules/
+dist/
+
+# GoldenClok Contract Demo local artifacts (SQLite sidecar files)
+*.db-journal
+*.db-wal
+*.db-shm
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+._*
+
+# Editor artifacts (local editor state only)
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.orig
+*.rej
+
+# Local screenshots / UI evidence (renders stay outside version control)
+/screenshots/
+/evidence/
+/ui-checks/
+
+# Local SQLite backups (does NOT ignore *.sql migration or schema files)
+*.db.bak
+*.db-backup
+*.db.backup
+*.sqlite.bak
+*.sqlite3.bak
+
+# Local logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Local credential files (values must never be committed)
+.envrc
+.direnv/
+.netrc
+secrets.toml
+credentials.json
+*.p12
+*.jks
+
+# Local Firefox render profile directories (headless UI checks)
+/ffprof*/

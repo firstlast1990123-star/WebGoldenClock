@@ -1,0 +1,37 @@
+filters:
+  and:
+    - file.inFolder("docs/Tasks")
+    - file.ext == "md"
+    - note.kind == "task"
+properties:
+  note.id:
+    displayName: ID
+  note.phase:
+    displayName: Phase
+  note.status:
+    displayName: Status
+  note.priority:
+    displayName: Priority
+  note.depends_on:
+    displayName: Depends on
+views:
+  - type: kanban
+    name: Board
+    groupBy:
+      property: status
+      direction: ASC
+    groupOrder:
+      - Backlog
+      - Todo
+      - In progress
+      - Blocked
+      - Done
+  - type: table
+    name: Task Register
+    order:
+      - file.name
+      - id
+      - phase
+      - status
+      - priority
+      - depends_on

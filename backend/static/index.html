@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d2b45" />
+    <title>GoldenClok — Bảng điều khiển giám sát sức khỏe (mô phỏng)</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Bỏ qua để đến nội dung bảng điều khiển</a>
+
+    <div class="demo-banner" role="note" aria-label="Cảnh báo dữ liệu mô phỏng">
+      <span class="demo-flag">MÔ PHỎNG</span>
+      <p>
+        <strong>Chỉ hiển thị dữ liệu mô phỏng.</strong>
+        Chỉ dành cho bản trình diễn thử nghiệm — không có người thật, không có dữ
+        liệu sức khỏe thật, không có bảo mật cấp sản xuất.
+      </p>
+    </div>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" focusable="false">
+              <path d="M11 3.5h10M11 28.5h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <rect x="7" y="7" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.7" />
+              <path d="M16 11.5v4.8l3.1 1.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="16" cy="16" r="1.1" fill="currentColor" stroke="none" />
+            </svg>
+          </span>
+          <div class="brand-copy">
+            <p class="brand-name">GoldenClok</p>
+            <p class="brand-sub">Giám sát sức khỏe qua thiết bị đeo · Nền tảng web</p>
+          </div>
+          <span class="tag">Bản demo</span>
+        </div>
+
+        <div class="header-actions">
+          <div class="refresh-meta">
+            <span id="refresh-state" class="refresh-time" role="status" aria-live="polite">Đang tải bảng điều khiển…</span>
+            <span class="refresh-hint">Tự động làm mới mỗi 15 giây · Asia/Ho_Chi_Minh</span>
+          </div>
+          <button id="refresh" class="btn" type="button" aria-label="Làm mới dữ liệu bảng điều khiển">
+            <svg class="icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+              <path d="M16.2 8.2A6.4 6.4 0 1 0 16 12.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              <path d="M16.6 4.6v3.9h-3.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>Làm mới</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" class="shell dashboard" tabindex="-1">
+      <p id="api-alert" class="alert" role="alert" hidden></p>
+
+      <section class="card span-2" id="device-card" data-status="neutral" aria-labelledby="device-title">
+        <div class="card-head">
+          <div class="head-titles">
+            <span class="kicker">Vận hành</span>
+            <h2 id="device-title">Trạng thái thiết bị và đồng bộ</h2>
+          </div>
+          <span class="badge demo">MÔ PHỎNG</span>
+        </div>
+        <div class="card-body" id="device-body">
+          <p class="muted">Đang tải trạng thái thiết bị…</p>
+        </div>
+      </section>
+
+      <section class="card span-2" id="wearer-card" aria-labelledby="wearer-title">
+        <div class="card-head">
+          <div class="head-titles">
+            <span class="kicker">Hồ sơ</span>
+            <h2 id="wearer-title">Hồ sơ người đeo</h2>
+          </div>
+          <span class="badge demo">MÔ PHỎNG</span>
+        </div>
+        <div class="card-body" id="wearer-body">
+          <p class="muted">Đang tải hồ sơ người đeo…</p>
+        </div>
+      </section>
+
+      <section class="card span-2" id="schedule-card" aria-labelledby="schedule-title">
+        <div class="card-head">
+          <div class="head-titles">
+            <span class="kicker">Lịch thuốc</span>
+            <h2 id="schedule-title">Lịch uống thuốc</h2>
+          </div>
+          <span class="badge demo">MÔ PHỎNG</span>
+        </div>
+        <div class="card-body" id="schedule-body">
+          <p class="muted">Đang tải lịch uống thuốc…</p>
+        </div>
+      </section>
+
+      <section class="card" id="events-card" aria-labelledby="events-title">
+        <div class="card-head">
+          <div class="head-titles">
+            <span class="kicker">Hoạt động</span>
+            <h2 id="events-title">Sự kiện gần đây</h2>
+          </div>
+          <span class="badge demo">MÔ PHỎNG</span>
+        </div>
+        <div class="card-body" id="events-body">
+          <p class="muted">Đang tải sự kiện gần đây…</p>
+        </div>
+        <p class="footnote">
+          <code>sms_sent</code> chỉ ghi nhận rằng firmware đã phát lệnh AT; trường
+          này <strong>không</strong> xác nhận SMS đã được gửi thành công. Các loại
+          sự kiện: <code>FALL</code> (phát hiện té ngã),
+          <code>FALL_CANCELLED</code> (hủy cảnh báo té ngã),
+          <code>SOS</code> (cứu trợ khẩn cấp),
+          <code>HR_HIGH</code>/<code>HR_LOW</code> (nhịp tim cao/thấp),
+          <code>MED_MISSED</code> (bỏ lỡ lịch thuốc),
+          <code>LOW_BATTERY</code> (pin yếu).
+        </p>
+      </section>
+
+      <section class="card" id="measure-card" aria-labelledby="measure-title">
+        <div class="card-head">
+          <div class="head-titles">
+            <span class="kicker">Sinh hiệu</span>
+            <h2 id="measure-title">Nhịp tim gần đây</h2>
+          </div>
+          <span class="badge demo">MÔ PHỎNG</span>
+        </div>
+        <div class="card-body" id="measure-body">
+          <p class="muted">Đang tải dữ liệu nhịp tim…</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <section aria-labelledby="footer-confirmed">
+          <h2 id="footer-confirmed">Hành vi hợp đồng đã xác nhận</h2>
+          <p>
+            Các hành vi hợp đồng đã được xác nhận và triển khai trong bản demo cục
+            bộ này: mảng ACK phẳng (xác nhận theo ID), xử lý HTTP 400/200 (400:
+            JSON hỏng; 200: JSON hợp lệ), token thiết bị Bearer và lưu trữ token
+            bằng SHA-256 (băm một chiều).
+          </p>
+        </section>
+        <section aria-labelledby="footer-interim">
+          <h2 id="footer-interim">Giả định INTERIM của bản demo</h2>
+          <p>
+            Cấu trúc gói yêu cầu đồng bộ (sync request envelope) và quy ước giá trị
+            thuốc là các giả định INTERIM (tạm thời, chưa chốt) của bản demo. Đây
+            chưa phải nội dung hợp đồng firmware đã xác nhận và cần được thống nhất
+            với đội firmware.
+          </p>
+        </section>
+        <section aria-labelledby="footer-missing">
+          <h2 id="footer-missing">Chưa triển khai trong bản này</h2>
+          <p>
+            Chưa tích hợp ESP32/firmware thật, chưa kiểm thử với phần cứng thật,
+            chưa có xác thực người giám hộ, chưa có cơ sở dữ liệu hay biện pháp bảo
+            mật cấp sản xuất. Bản demo này <strong>không</strong> đảm bảo an toàn
+            cho môi trường sản xuất.
+          </p>
+        </section>
+      </div>
+      <div class="shell">
+        <p class="footer-meta">
+          Mọi mốc thời gian được hiển thị theo Asia/Ho_Chi_Minh (UTC+7). Dữ liệu
+          trên bảng điều khiển là dữ liệu mô phỏng, không phải dữ liệu sức khỏe của
+          người thật. Các mục hợp đồng còn mở đều được ghi nhận rõ ràng, không
+          phỏng đoán.
+        </p>
+      </div>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

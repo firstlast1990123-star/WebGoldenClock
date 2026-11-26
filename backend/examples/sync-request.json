@@ -1,0 +1,34 @@
+{
+  "_comment": "INTERIM request envelope - NOT A FIRMWARE CONTRACT. The sync request body schema is undocumented; only the response envelope, ACK and HTTP semantics are confirmed. Record groups mirror the approved entity names. See docs/Decisions/Phase 2 Contract Demo Scope.md",
+  "config_version": 0,
+  "records": {
+    "health_measurements": [
+      {
+        "record_id": "DEMO-HR-0001",
+        "measured_at": 1795000000,
+        "heart_rate": 78
+      }
+    ],
+    "medication_records": [
+      {
+        "record_id": "DEMO-MED-0001",
+        "schedule_id": 0,
+        "scheduled_time": 1794979200,
+        "status": "TAKEN"
+      }
+    ],
+    "events": [
+      {
+        "record_id": "DEMO-EVT-0002",
+        "event_type": "FALL",
+        "occurred_at": 1794990000,
+        "sms_sent": true
+      },
+      {
+        "record_id": "DEMO-EVT-0003",
+        "event_type": "FALL_CANCELLED",
+        "occurred_at": 1794990030
+      }
+    ]
+  }
+}
