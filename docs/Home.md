@@ -1,7 +1,7 @@
 ---
 type: project-dashboard
 project: GoldenClok
-updated: 2026-11-25
+updated: 2026-11-27
 tags:
   - goldenclock
   - dashboard
@@ -10,7 +10,7 @@ tags:
 # GoldenClok — Project Hub
 
 > [!info] Current stage
-> **Contract Demo implemented — production Phase 2 remains blocked.** Phase 1, Phase 1.5 and the Phase 1.6 audit report have been completed and reconciled at [[docs/Architecture/Phase 1.6 - Architecture Readiness Audit|Phase 1.6 Report]]. A reduced, local-only Contract Demo (FastAPI + SQLite + static HTML/JS) is implemented and tested; the Phase 2.6 Vietnamese dashboard has been visually approved by the Project Owner. Option D (Hybrid) was approved as the **target** production architecture in Phase 1.7.2, but production implementation has not started and remains subject to security readiness, unresolved decisions and separate implementation authorization. The production stack (Supabase, Auth, RLS, React) remains not implemented.
+> **Contract Demo complete (local-only) — Git baseline published — production Phase 2 remains blocked.** Phase 1, Phase 1.5 and the Phase 1.6 audit report have been completed and reconciled at [[docs/Architecture/Phase 1.6 - Architecture Readiness Audit|Phase 1.6 Report]]. A reduced, local-only Contract Demo (FastAPI + SQLite + static HTML/JS) is implemented and tested; the Phase 2.6 Vietnamese dashboard has been visually approved by the Project Owner. The **33-file Contract Demo baseline** was committed as `ebc288281a8dfc4b9f644cfe2d63ac04ba0c5843` (`chore: establish GoldenClok Contract Demo baseline`) and pushed to GitHub `main` on 2026-11-27 (Phase 2.8.2/2.8.3). Option D (Hybrid) was approved as the **target** production architecture in Phase 1.7.2, but production implementation has not started and remains subject to security readiness, unresolved decisions and separate implementation authorization. The production stack (Supabase Auth, RLS, production database migrations, React frontend) remains not implemented.
 
 ## Project snapshot
 
@@ -25,6 +25,7 @@ tags:
 | Frontend | React + Vite + TypeScript — **PROVISIONAL** (demo uses static HTML/JS) |
 | UI styling | Tailwind CSS — **PROVISIONAL** (demo uses plain CSS) |
 | Application code | **Contract Demo only** — production app not started |
+| Git baseline | **Published on GitHub `main`** — commit `ebc2882` (33 reviewed files), pushed 2026-11-27 |
 | Database migrations | Not started (SQLite demo schema only) |
 | Automated tests | 47 — 41 contract/persistence + 6 HTTP integration |
 
@@ -39,10 +40,11 @@ tags:
 
 ## Current priorities
 
-1. Obsidian Dashboard and Task Board have been verified by the Project Owner ([[docs/Tasks/GC-T001 - Verify Obsidian Dashboard and Task Board|GC-T001: Done]]); roadmap content was reconciled in Phase 2.8.1 (Obsidian rendering of the roadmap was not separately re-confirmed).
-2. Project Owner reviews the reconciled [[docs/Architecture/Phase 1.6 - Architecture Readiness Audit|Phase 1.6 Architecture Readiness Report]] and decides on the provisional Tech Stack ([[docs/Tasks/GC-T003 - Review Phase 1.6 Report and Decisions|GC-T003]]).
-3. Authorize production Phase 2 scaffolding only after security readiness is demonstrated, the unresolved decisions are closed and implementation is explicitly authorized ([[docs/Tasks/GC-T004 - Approve Architecture and Authorize Phase 2|GC-T004]]).
-4. The local-only Contract Demo is verified by automated tests and manual smoke checks; it is not production architecture and must not be exposed publicly. See [[project|project.md]] for the Phase 2.7.1 record.
+1. Git baseline is published: 33 reviewed files at `ebc288281a8dfc4b9f644cfe2d63ac04ba0c5843` on GitHub `main` (pushed 2026-11-27, Phase 2.8.2/2.8.3).
+2. Obsidian Dashboard and Task Board have been verified by the Project Owner ([[docs/Tasks/GC-T001 - Verify Obsidian Dashboard and Task Board|GC-T001: Done]]); roadmap content was reconciled in Phase 2.8.1 (Obsidian rendering of the roadmap was not separately re-confirmed).
+3. Project Owner reviews the reconciled [[docs/Architecture/Phase 1.6 - Architecture Readiness Audit|Phase 1.6 Architecture Readiness Report]] and decides on the provisional Tech Stack ([[docs/Tasks/GC-T003 - Review Phase 1.6 Report and Decisions|GC-T003]]).
+4. Authorize production Phase 2 scaffolding only after security readiness is demonstrated, the unresolved decisions are closed and implementation is explicitly authorized ([[docs/Tasks/GC-T004 - Approve Architecture and Authorize Phase 2|GC-T004]]).
+5. The local-only Contract Demo is verified by automated tests and manual smoke checks; it is not production architecture and must not be exposed publicly. See [[project|project.md]] for the Phase 2.7.1 record.
 
 ## Task board
 

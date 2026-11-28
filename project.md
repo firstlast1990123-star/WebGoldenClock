@@ -7,14 +7,14 @@ Quy tắc quản lý: Cập nhật sau mỗi task/phase, ghi nhận đúng thự
 
 ## TỔNG QUAN HIỆN TRẠNG DỰ ÁN (CURRENT STATUS)
 
-- **Giai đoạn hiện tại:** Phase 2.8.1 — Baseline Git được chuẩn bị: **Contract Demo thu gọn** đã kiểm chứng bằng 47 test tự động, SĐT giả lập chuẩn `+84000000000`, `.gitignore` được tăng cường và tài liệu kiến trúc/lộ trình được đối soát (Phase 2.2 → 2.7.3 + Phase 2.8.0 read-only audit + Phase 2.8.1 pre-baseline hygiene). **Option D Hybrid đã được phê duyệt là kiến trúc sản xuất mục tiêu tại Phase 1.7.2.** Việc triển khai sản xuất **chưa bắt đầu** và vẫn phụ thuộc vào mức độ sẵn sàng bảo mật, các quyết định chưa chốt và một lần phê duyệt triển khai riêng. Tech Stack vẫn `PROVISIONAL`; production Phase 2 vẫn **blocked**.
+- **Giai đoạn hiện tại:** Phase 2.8.4 — Đối soát tài liệu sau baseline: **Contract Demo thu gọn** đã kiểm chứng bằng 47 test tự động, SĐT giả lập chuẩn `+84000000000`, `.gitignore` được tăng cường, tài liệu kiến trúc/lộ trình được đối soát (Phase 2.2 → 2.8.1) và **baseline Git đã được commit cục bộ + push thành công lên GitHub** (Phase 2.8.2/2.8.3). Commit baseline `ebc288281a8dfc4b9f644cfe2d63ac04ba0c5843` — `chore: establish GoldenClok Contract Demo baseline` — gồm **33 tệp đã kiểm duyệt**; GitHub `main` trỏ đúng commit này. **Option D Hybrid đã được phê duyệt là kiến trúc sản xuất mục tiêu tại Phase 1.7.2.** Việc triển khai sản xuất **chưa bắt đầu** và vẫn phụ thuộc vào mức độ sẵn sàng bảo mật, các quyết định chưa chốt và một lần phê duyệt triển khai riêng. Tech Stack vẫn `PROVISIONAL`; production Phase 2 vẫn **blocked**.
 - **Tài liệu kiểm toán:** Đã lưu tại `docs/Architecture/Phase 1.6 - Architecture Readiness Audit.md`.
 - **Phạm vi Contract Demo:** `docs/Decisions/Phase 2 Contract Demo Scope.md` (FastAPI + SQLite + HTML/JS thuần, chỉ chạy `127.0.0.1`).
 - **SĐT giả lập chuẩn (Phase 2.7.2, xác nhận lại Phase 2.7.3):** `+84000000000` — quyết định của Project Owner; đã áp dụng trong `backend/seed.py`, các test, `README.md`, decision record và `backend/demo.db`.
 - **Trạng thái mã nguồn:** Đã có `backend/` (endpoint `POST /api/device/sync`, dashboard demo, seed dữ liệu giả lập, **47 test tự động**: 41 test contract/persistence + 6 test HTTP integration). Lớp HTTP đã được kiểm chứng tự động: `/health` 200, dashboard 200, sync 200/ACK 4 ID, replay không trùng, token sai/thiếu 401, JSON hỏng và lỗi cấu trúc 400, mixed record 200 với `rejected`, config-version handshake. Dashboard đã được tinh chỉnh UI/UX, Việt hóa và **được Project Owner phê duyệt thị giác** (Phase 2.6; kiểm chứng headless Firefox ở 1920, 1440, 1280, 1024 và 360 px; **chưa** kiểm thử tương tác). **Chưa có** migration Supabase, chưa có xác thực guardian, chưa triển khai mô hình bảo mật Option D.
 - **Môi trường phát triển:** Linux Mint (4 Cores, ~3.3 GB RAM, áp lực bộ nhớ cao, Python 3.12 & SQLite có sẵn; chưa cài Node.js). `.venv/` trong repo đã có FastAPI 0.165.0 và Uvicorn 0.54.0 (đã nằm trong `.gitignore`); interpreter hệ thống vẫn ở chế độ PEP 668, không có FastAPI/Uvicorn và không cài đặt hệ thống. Test HTTP dùng `.venv/bin/python -m uvicorn` + thư viện chuẩn `urllib`, không cài thêm gói.
-- **Trạng thái baseline Git:** đã kiểm toán read-only (Phase 2.8.0) và vệ sinh trước baseline (Phase 2.8.1). Toàn bộ mã nguồn/tài liệu vẫn **chưa được track**; **chưa stage, chưa commit, chưa push**.
-- **Bước tiếp theo:** (1) Project Owner xem xét và, nếu đồng ý, cho phép stage/commit baseline đã kiểm toán (hiện toàn bộ mã nguồn/tài liệu vẫn chưa được track); (2) chốt request envelope và các mục `OPEN` với đội Firmware trước khi ghép thiết bị thật; (3) chỉ bắt đầu Phase 2 sản xuất sau khi Tech Stack được phê duyệt, các quyết định bảo mật/hợp đồng còn mở được chốt và có uỷ quyền triển khai riêng (Task `GC-T003`, `GC-T004`).
+- **Trạng thái baseline Git:** **đã hoàn tất.** Phase 2.8.2 tạo commit cục bộ `ebc288281a8dfc4b9f644cfe2d63ac04ba0c5843` (message `chore: establish GoldenClok Contract Demo baseline`, parent `e0d4d066d558ca5a76d21d01e27248ffc551f493`, **33 tệp** đã kiểm duyệt); Phase 2.8.3 push thành công lên GitHub `main` ngày **2026-11-27**. GitHub `main` đã được xác minh độc lập là trỏ đúng commit baseline.
+- **Bước tiếp theo:** (1) Phase 2.8.5 — đánh giá/tích hợp công cụ workflow; (2) Phase 2.9 — đánh giá mức độ sẵn sàng kiến trúc và bảo mật; (3) chỉ bắt đầu Phase 2 — Project Scaffolding sau khi các quyết định bắt buộc được chốt và có uỷ quyền triển khai riêng (Task `GC-T003`, `GC-T004`).
 - **Giới hạn vẫn còn:** chưa thử nghiệm ESP32/phần cứng thật; request envelope vẫn `INTERIM`; các mục firmware `OPEN` vẫn `OPEN`; dashboard chưa có xác thực; chưa có Supabase project hay CSDL sản xuất; demo **không** bảo mật sản xuất; chưa kiểm thử tương tác/đa trình duyệt; Superpowers, Spec Kit và Browser MCP chưa được tích hợp.
 
 ---
@@ -492,3 +492,34 @@ Quy tắc quản lý: Cập nhật sau mỗi task/phase, ghi nhận đúng thự
 - **Git:** **Không stage, không commit, không push, không merge, không đổi branch.** HEAD vẫn `e0d4d066d558ca5a76d21d01e27248ffc551f493` trên `main`.
 - **CHƯA ĐƯỢC XÁC MINH / GIỚI HẠN:** chưa render lại Roadmap trong Obsidian; chưa chạy `curl`; chưa kiểm thử tương tác/đa trình duyệt; chưa có Supabase/RLS/guardian auth/React/migration/deploy; chưa commit baseline.
 - **Bước tiếp theo:** Project Owner xem xét danh sách stage đề xuất của Phase 2.8.0 và cấp uỷ quyền stage/commit riêng; tiếp tục chốt request envelope và các mục `OPEN` với đội Firmware; chỉ bắt đầu Phase 2 sản xuất sau khi Tech Stack được phê duyệt, các quyết định bảo mật/hợp đồng được chốt và có uỷ quyền triển khai riêng.
+
+---
+
+### [2026-11-27] — Phase 2.8.2/2.8.3: Git Baseline Commit & GitHub Push (Commit baseline Git & push GitHub)
+
+- **Mục tiêu:** Tạo baseline Git cục bộ từ 33 tệp đã được Project Owner kiểm duyệt và publish baseline đó lên GitHub `main`; không thay đổi mã nguồn ứng dụng trong các thao tác Git.
+- **Commit baseline (Phase 2.8.2):**
+  - **SHA:** `ebc288281a8dfc4b9f644cfe2d63ac04ba0c5843`
+  - **Message:** `chore: establish GoldenClok Contract Demo baseline`
+  - **Parent:** `e0d4d066d558ca5a76d21d01e27248ffc551f493`
+  - **Số tệp:** **33** — đúng danh sách 33 đường dẫn đã được Project Owner kiểm duyệt ở Phase 2.8.2.
+  - **Branch:** `main`
+- **Push GitHub (Phase 2.8.3):**
+  - Push thành công ngày **2026-11-27** bằng lệnh thông thường `git push origin main` (fast-forward, không force).
+  - GitHub `main` đã được xác minh độc lập (fetch + `git ls-remote origin refs/heads/main`) là trỏ đúng `ebc288281a8dfc4b9f644cfe2d63ac04ba0c5843`.
+  - Lần push đầu tiên **thất bại** vì môi trường không có thông tin đăng nhập HTTPS (`could not read Username for 'https://github.com'`). Sau đó Project Owner đã cài GitHub CLI và xác thực tài khoản; lần push cuối cùng thành công.
+  - Không dùng force push, không amend, không rebase, không tạo thêm commit.
+- **Phạm vi:** Không thay đổi mã nguồn ứng dụng, test, phụ thuộc, CSDL demo hay hợp đồng firmware trong các thao tác Git này.
+- **Bảo mật:** Không ghi lại token, mã xác thực, credential hay bất kỳ bí mật nào.
+- **Bước tiếp theo:** Phase 2.8.5 (đánh giá/tích hợp công cụ workflow) → Phase 2.9 (sẵn sàng kiến trúc/bảo mật) → Phase 2 — Project Scaffolding chỉ sau khi các quyết định bắt buộc được chốt và có uỷ quyền triển khai riêng.
+
+---
+
+### [2026-11-27] — Phase 2.8.4: Post-Baseline Documentation Reconciliation (Đối soát tài liệu sau baseline)
+
+- **Mục tiêu:** Đối soát tài liệu dự án sau khi baseline Git đã được commit và push; chỉ sửa tài liệu, không triển khai tính năng sản xuất và không thay đổi Contract Demo.
+- **Tập tin sửa đổi:** `project.md` (tóm tắt hiện trạng + mục này), `docs/Home.md`, `docs/Roadmap.md`.
+- **Nội dung:** Ghi nhận commit baseline `ebc2882…` (33 tệp, message `chore: establish GoldenClok Contract Demo baseline`) và push GitHub thành công ngày 2026-11-27; GitHub `main` trỏ đúng commit. Cập nhật lộ trình kế tiếp: Phase 2.8.5 (công cụ workflow) → Phase 2.9 (sẵn sàng kiến trúc/bảo mật) → Phase 2 — Project Scaffolding chỉ sau khi chốt quyết định và có uỷ quyền riêng. Bổ sung milestone Git baseline **Done** vào Roadmap và trạng thái baseline đã publish vào Dashboard.
+- **Không sửa:** `AGENTS.md`, backend/frontend/test/dependency/database/firmware, decision register; không đổi trạng thái `CONFIRMED`/`PROVISIONAL`/`PROPOSED`/`OPEN`; không thay đổi Option D hay hợp đồng Firmware ↔ Web.
+- **Kiểm chứng:** `git diff` chỉ có 3 tệp; `git diff --check` sạch; local HEAD và `origin/main` cùng `ebc288281a8dfc4b9f644cfe2d63ac04ba0c5843`; các mục lịch sử cũ giữ nguyên.
+- **Git:** Không stage, không commit, không push, không merge/rebase/reset; thay đổi tài liệu để Project Owner xem xét.

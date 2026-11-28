@@ -1,7 +1,7 @@
 ---
 type: project-roadmap
 project: GoldenClok
-updated: 2026-11-25
+updated: 2026-11-27
 tags:
   - goldenclock
   - roadmap
@@ -21,6 +21,7 @@ This roadmap shows the known project sequence. It is a planning view, not approv
 | Obsidian Knowledge Workspace | **Done** | Dashboard and task board verified by the Project Owner (GC-T001); roadmap content reconciled in Phase 2.8.1 (Obsidian rendering of the roadmap was not separately re-confirmed). `.obsidian/` remains ignored by Git. |
 | Phase 1.6 — Architecture Finalization & Readiness Audit | **Done** | Read-only audit report completed and reconciled at `docs/Architecture/Phase 1.6 - Architecture Readiness Audit.md`. |
 | Phase 2 — Contract Demo (reduced, local-only) | **Done (demo only)** | FastAPI + SQLite + static HTML/JS vertical slice implemented and tested (47 automated tests); not production architecture. |
+| Git Baseline — Contract Demo | **Done** | 33 reviewed files committed as `ebc288281a8dfc4b9f644cfe2d63ac04ba0c5843` and pushed to GitHub `main` on 2026-11-27; remote `main` verified at the same SHA. |
 | Architecture Review & Implementation Authorization | **In progress** | Option D approved as the target architecture (Phase 1.7.2); remaining security/contract decisions and a separate implementation authorization are still pending. |
 | Phase 2 — Project Scaffolding | **Blocked** | Only starts after security readiness, closed decisions and explicit implementation authorization; create the approved minimal project skeleton and verification baseline. |
 | Database & Guardian Auth implementation | **Planned** | Scope and schema are approved; migrations and auth behavior are tested. |
@@ -35,6 +36,7 @@ This roadmap shows the known project sequence. It is a planning view, not approv
 - **Phase 1.5 — Architecture Refinement:** correction of flat ACK format, sync cadence and other contract details; Supabase PostgreSQL and Supabase Auth recorded as confirmed.
 - **Workspace Governance:** `AGENTS.md` and `project.md` working rules established.
 - **Phase 2 — Contract Demo (reduced, local-only):** FastAPI sync endpoint, SQLite persistence, synthetic seed, localized dashboard, contract/persistence tests and HTTP integration tests. This is a demo vertical slice, not the production platform.
+- **Git Baseline — Contract Demo:** 33 reviewed files committed as `ebc2882` and pushed to GitHub `main` on 2026-11-27; remote `main` verified at the same SHA. The Git operations did not change application source.
 
 ### Current preparation
 
